@@ -13,7 +13,11 @@ f = x - (x **  3) / factorial( 3) \
       + (x **  9) / factorial( 9) \
       - (x ** 11) / factorial(11) \
       + (x ** 13) / factorial(13)
+
 # f = x ** 3 / 4 + x ** 2
+
+f = math.e ** (- x ** 2)
+
 fd = f.deriviate(x)
 fdd = fd.deriviate(x)
 fddd = fdd.deriviate(x)
@@ -25,11 +29,13 @@ vfd = [(x.setValue(v), fd.evaluate())[1] for v in line]
 vfdd = [(x.setValue(v), fdd.evaluate())[1] for v in line]
 vfddd = [(x.setValue(v), fddd.evaluate())[1] for v in line]
 
-plt.plot(line, vf, label = "$f'(x)$")
+plt.plot(line, vf, label = "$f(x)$")
 plt.plot(line, vfd, label = "$f'(x)$")
-# plt.plot(line, vfdd, label = "$f''(x)$")
-# plt.plot(line, vfddd, label = "$f'''(x)$")
+plt.plot(line, vfdd, label = "$f''(x)$")
+plt.plot(line, vfddd, label = "$f'''(x)$")
 
+plt.title('$e^{-x^2}$')
 plt.grid(True)
 plt.legend()
+
 plt.show()
