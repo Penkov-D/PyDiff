@@ -9,48 +9,77 @@ class expression(ABC):
     def evaluate(self) -> float:
         pass
 
+    def e(self) -> float:
+        return self.evaluate()
+
     @abstractmethod
     def deriviate(self, var : 'variable') -> 'expression':
         pass
+
+    def d(self, var : 'variable') -> 'expression':
+        return self.deriviate(var)
 
     @abstractmethod
     def isConstant(self) -> bool:
         pass
     
     def __neg__(self) -> 'expression':
-        return expression_neg(self)
+        return neg(self)
+    
+    def neg(self) -> 'expression':
+        return neg(self)
 
     def __add__(self, other) -> 'expression':
-        return expression_add(self, other)
+        return add(self, other)
+
+    def add(self, other) -> 'expression':
+        return add(self, other)
     
     def __radd__(self, other) -> 'expression':
-        return expression_add(other, self)
+        return add(other, self)
 
     def __sub__(self, other) -> 'expression':
-        return expression_sub(self, other)
+        return sub(self, other)
+
+    def sub(self, other) -> 'expression':
+        return sub(self, other)
     
     def __rsub__(self, other) -> 'expression':
-        return expression_sub(other, self)
+        return sub(other, self)
 
     def __mul__(self, other) -> 'expression':
-        return expression_mul(self, other)
+        return mul(self, other)
+
+    def mul(self, other) -> 'expression':
+        return mul(self, other)
 
     def __rmul__(self, other) -> 'expression':
-        return expression_mul(other, self)
+        return mul(other, self)
 
     def __truediv__(self, other) -> 'expression':
-        return expression_div(self, other)
+        return div(self, other)
+
+    def div(self, other) -> 'expression':
+        return div(self, other)
 
     def __rtruediv__(self, other) -> 'expression':
-        return expression_div(other, self)
+        return div(other, self)
 
     def __pow__(self, other) -> 'expression':
-        return expression_pow(self, other)
+        return pow(self, other)
+
+    def pow(self, other) -> 'expression':
+        return pow(self, other)
 
     def __rpow__(self, other) -> 'expression':
-        return expression_pow(other, self)
+        return pow(other, self)
     
-
+    def exp(self) -> 'expression':
+        return exp(self)
+    
+    def log(self) -> 'expression':
+        return log(self)
+    
 
 class expression_value(expression):
 
@@ -76,7 +105,6 @@ class constant(expression_value):
         return constant(0.0)
     
 
-
 class variable(expression_value):
 
     def isConstant(self) -> bool:
@@ -89,7 +117,6 @@ class variable(expression_value):
         return constant(1.0 if self is var else 0.0)
 
 
-
 class expression_bin(expression):
 
     def __init__(self, left : expression, right : expression):
@@ -100,7 +127,6 @@ class expression_bin(expression):
         return self._left.isConstant() and self._right.isConstant()
 
 
-
 class expression_uno(expression):
 
     def __init__(self, inner : expression):
@@ -108,6 +134,7 @@ class expression_uno(expression):
 
     def isConstant(self) -> bool:
         return self._inner.isConstant()
-    
-    
-from .operators import *
+
+
+# Include for all the basic functions
+from .math_basic import *

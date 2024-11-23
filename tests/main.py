@@ -20,7 +20,9 @@ f = x - (x **  3) / factorial( 3) \
 
 # f = x ** 3 / 4 + x ** 2
 
-f = math.e ** (- x ** 2)
+# f = math.e ** (- x ** 2)
+
+f = x.pow(2).neg().exp()
 
 fd = f.deriviate(x)
 fdd = fd.deriviate(x)
