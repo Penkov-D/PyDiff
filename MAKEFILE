@@ -1,0 +1,30 @@
+# Makefile for packaging and installing the Python package
+
+.PHONY: all sdist install clean
+
+PACKAGE_DIR = pydifferentiator
+PACKAGE_NAME = pydifferentiator
+
+# Default target
+all:
+	@echo "Available targets:"
+	@echo "  sdist     - Create a .tar.gz source distribution"
+	@echo "  install   - Install the package"
+	@echo "  uninstall - Uninstall the package"
+	@echo "  clean     - Remove build artifacts"
+
+# Create source distribution (.tar.gz)
+sdist:
+	python ./$(PACKAGE_DIR)/setup.py sdist
+
+# Install the package
+install:
+	pip install ./$(PACKAGE_DIR)
+
+# Uninstall the package
+uninstall:
+	pip uninstall $(PACKAGE_NAME)
+
+# Clean up build artifacts
+clean:
+	rm -rf build dist *.egg-info

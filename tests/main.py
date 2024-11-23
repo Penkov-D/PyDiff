@@ -1,11 +1,15 @@
-import pydiff
+import sys
+sys.path.append('..\\')
+sys.path.append('.\\')
+
+from pydifferentiator import variable, expression
 import matplotlib.pyplot as plt
 import math
 
 def factorial(x):
     return 1 if x <= 1 else x * factorial(x - 1)
 
-x = pydiff.variable(2.0)
+x = variable(2.0)
 
 f = x - (x **  3) / factorial( 3) \
       + (x **  5) / factorial( 5) \
